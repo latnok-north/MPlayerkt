@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.murphy.library.widget.SlidingUpPanelLayout.SlidingUpPanelLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slidingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sothree:umanoDragView="@+id/bottomContainer"
+    sothree:umanoPanelHeight="50dp"
+    sothree:umanoShadowHeight="5dp"
+    sothree:umanoOverlay="false">
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bottomContainer"/>
+
+</com.murphy.library.widget.SlidingUpPanelLayout.SlidingUpPanelLayout>

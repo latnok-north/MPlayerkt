@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemeLight" parent="ThemeBaseLight">
+        <!-- toolbar（actionbar）颜色 -->
+        <item name="android:colorPrimaryDark">@color/selected_day_background</item>
+        <item name="android:toolbarStyle">@style/MyToolBar</item>
+    </style>
+
+    <style name="AppThemeDark" parent="ThemeBaseDark">
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+    </style>
+
+    <style name="Material" parent="android:Theme.Material">
+        <item name="android:statusBarColor">@color/selected_day_background</item>
+        <item name="colorPrimary">@color/selected_day_background</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>

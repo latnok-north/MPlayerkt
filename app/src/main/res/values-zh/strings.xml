@@ -1,0 +1,31 @@
+<resources>
+
+
+    <string name="app_name">MurphyPlayer</string>
+
+    <string name="mp.fragment.title.song">歌曲</string>
+    <string name="mp.fragment.title.singer">歌手</string>
+    <string name="mp.fragment.title.special">专辑</string>
+    <string name="mp.fragment.title.text">我的歌曲</string>
+
+    <string name="play_shuffle">Play shuffle in all</string>
+
+    <string name="library">我的歌曲</string>
+    <string name="playlists">我的歌单</string>
+    <string name="folders">文件夹</string>
+    <string name="favourate">我喜欢</string>
+    <string name="recent_play">最近播放</string>
+    <string name="recent_add">最近添加</string>
+    <string name="settings">设置</string>
+    <string name="exit">退出</string>
+    <string name="search">搜索</string>
+    <string name="action_equalizer">均衡</string>
+    <string name="search_library">本地搜索</string>
+    <string name="play_ranking">播放排行</string>
+
+    <string-array name="mp_main_titles">
+        <item>@string/mp.fragment.title.song</item>
+        <item>@string/mp.fragment.title.singer</item>
+        <item>@string/mp.fragment.title.special</item>
+    </string-array>
+</resources>
