@@ -5,12 +5,11 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.view.View
 import com.murphy.library.base.BaseFragment
 import com.murphy.mplayer_kt.R
 import com.murphy.mplayer_kt.ui.adapter.MainPagerAdapter
-import com.murphy.mplayer_kt.ui.fragment.singer.SingerFragment
-import com.murphy.mplayer_kt.ui.fragment.singer.SongFragment
+import com.murphy.mplayer_kt.ui.fragment.artist.ArtistFragment
+import com.murphy.mplayer_kt.ui.fragment.artist.SongFragment
 import com.murphy.mplayer_kt.ui.fragment.special.SpecialFragment
 import kotterknife.bindView
 
@@ -50,7 +49,7 @@ class MainFragment : BaseFragment() {
         mTitles = resources.getStringArray(R.array.mp_main_titles)
         val fragments = ArrayList<BaseFragment>()
         fragments.add(SongFragment())
-        fragments.add(SingerFragment())
+        fragments.add(ArtistFragment())
         fragments.add(SpecialFragment())
 
 

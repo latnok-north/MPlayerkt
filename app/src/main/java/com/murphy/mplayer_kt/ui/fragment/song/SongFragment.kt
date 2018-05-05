@@ -1,13 +1,11 @@
-package com.murphy.mplayer_kt.ui.fragment.singer
+package com.murphy.mplayer_kt.ui.fragment.artist
 
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import com.murphy.library.adapter.DividerItemDecoration
 import com.murphy.library.data.model.SongModel
-import com.murphy.library.utils.LogUtils
 import com.murphy.mplayer_kt.ui.adapter.SongAdapter
 import com.murphy.mplayer_kt.ui.fragment.BaseItemListFragment
 import com.murphy.mplayer_kt.ui.fragment.song.SongViewModel

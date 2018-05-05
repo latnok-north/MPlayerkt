@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivArtistImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:src="?default_artist_drawable" />
+
+
+    <ImageView
+        android:id="@+id/ivArtistMenu"
+        style="@style/Widget.AppCompat.ActionButton.Overflow"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/grid_layout_list_item_info_height"
+        android:layout_centerVertical="true"
+        android:background="?actionBarItemBackground"
+        android:src="@mipmap/ic_menu"
+        android:tint="@color/background_floating_material_dark"
+        app:layout_constraintRight_toRightOf="@+id/ivArtistImage"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtistImage"/>
+    <TextView
+        android:id="@+id/tvArtistName"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/grid_layout_list_item_info_height"
+        app:layout_constraintTop_toBottomOf="@+id/ivArtistImage"
+        app:layout_constraintRight_toLeftOf="@+id/ivArtistMenu"
+        android:gravity="center"
+        android:text="123"/>
+</android.support.constraint.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import com.murphy.library.base.BaseViewModel
+import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.SongModel
 import com.murphy.library.data.source.LocalDataSource
 import com.murphy.library.rx.BaseObserver
@@ -29,12 +30,12 @@ class SongViewModel : BaseViewModel() {
     fun getSongList(mContext: Context) : LiveData<ArrayList<SongModel>>?{
         if (mSongs == null) {
             mSongs = MutableLiveData()
-            loadData(mContext)
+            loadMusic(mContext)
         }
         return mSongs
     }
 
-    private fun loadData(mContext: Context) {
+    private fun loadMusic(mContext: Context) {
         if (dataSource == null) {
             dataSource = LocalDataSource()
         }
@@ -54,4 +55,20 @@ class SongViewModel : BaseViewModel() {
         })
     }
 
+    private fun loadArtist(mContext: Context) {
+        if (dataSource == null) {
+            dataSource = LocalDataSource()
+        }
+
+        dataSource?.scanArtist(mContext)!!.subscribe(object : BaseObserver<ArrayList<ArtistModel>>() {
+            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+
+            }
+
+            override fun onSuccess(t: ArrayList<ArtistModel>) {
+
+            }
+
+        })
+    }
 }

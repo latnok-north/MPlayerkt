@@ -27,7 +27,7 @@ abstract class BaseItemListFragment : BaseLazyFragment() {
         recyclerView.layoutManager = generateLayoutManager()
     }
 
-    protected fun generateLayoutManager(): RecyclerView.LayoutManager {
+    open fun generateLayoutManager(): RecyclerView.LayoutManager {
         val linearLayoutManager = LinearLayoutManager(activity)
         linearLayoutManager.isSmoothScrollbarEnabled = true
         return linearLayoutManager

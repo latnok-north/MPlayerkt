@@ -6,12 +6,13 @@ import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
 import com.murphy.library.data.model.FolderModel
+import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.SongModel
 import com.murphy.library.utils.FileUtils
-import com.murphy.library.utils.LogUtils
 import java.io.File
 import java.io.FileFilter
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Created by murphy on 2018/4/6.
@@ -106,6 +107,29 @@ class MusicHelper {
                 }
             }
 
+            return list
+        }
+
+        fun getArtists(context: Context):ArrayList<ArtistModel> {
+            var list = ArrayList<ArtistModel>()
+            val cursor = context.contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    arrayOf(MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.DISPLAY_NAME, MediaStore.Audio.Media.DURATION, MediaStore.Audio.Media.ARTIST, MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.SIZE), null, null, MediaStore.Audio.AudioColumns.ARTIST)
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+
+                    val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media._ID))
+                    val title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE))
+                    val artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST))
+                    val display_name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME))
+                    val path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA))
+                    val duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION))
+                    val size = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE))
+
+
+                    val artistModel = ArtistModel(artist)
+                    list.add(artistModel)
+                }
+            }
             return list
         }
     }
