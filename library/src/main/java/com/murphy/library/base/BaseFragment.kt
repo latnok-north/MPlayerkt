@@ -1,6 +1,8 @@
 package com.murphy.library.base
 
 import android.content.Context
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.Toolbar
@@ -13,17 +15,20 @@ import com.murphy.library.utils.LogUtils
  * Created by murphy on 2018/3/31.
  */
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
     val TAG = this.javaClass.simpleName
 
     abstract val layoutId: Int
     var mRootView: View? = null
-
+    protected lateinit var mBinding: VB
+    protected var viewModel: VM? = null
     abstract fun onBaseViewCreated(savedInstanceState: Bundle?)
-
+    abstract fun initViewModel(): VM
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater.inflate(layoutId, container, false)
+            mBinding = DataBindingUtil.inflate(inflater, layoutId, null, false)
+            mRootView = mBinding.root
+            viewModel = initViewModel()
         }
         LogUtils.i(TAG, "onCreateView")
         return mRootView

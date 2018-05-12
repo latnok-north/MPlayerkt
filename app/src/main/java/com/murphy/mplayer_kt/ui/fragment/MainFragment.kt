@@ -1,27 +1,24 @@
 package com.murphy.mplayer_kt.ui.fragment
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewPager
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import com.murphy.library.base.BaseFragment
 import com.murphy.mplayer_kt.R
+import com.murphy.mplayer_kt.databinding.FragmentMainBinding
 import com.murphy.mplayer_kt.ui.adapter.MainPagerAdapter
 import com.murphy.mplayer_kt.ui.fragment.artist.ArtistFragment
 import com.murphy.mplayer_kt.ui.fragment.artist.SongFragment
 import com.murphy.mplayer_kt.ui.fragment.special.SpecialFragment
-import kotterknife.bindView
+import com.murphy.mplayer_kt.ui.viewmodel.MainViewModel
 
 /**
  * Created by murphy on 2018/4/1.
  */
-class MainFragment : BaseFragment() {
-
-
-    val mViewPager: ViewPager by bindView(R.id.viewpager)
-    val mTabLayout: TabLayout by bindView(R.id.tablayout)
-    val mToolbar: Toolbar by bindView(R.id.toolbar)
+class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>() {
+    override fun initViewModel(): MainViewModel {
+        return MainViewModel()
+    }
 
     lateinit var mTitles: Array<String>
 
@@ -41,21 +38,21 @@ class MainFragment : BaseFragment() {
     }
 
     fun initToolbar() {
-        (activity as AppCompatActivity).setSupportActionBar(mToolbar)
+        (activity as AppCompatActivity).setSupportActionBar(mBinding.toolbar)
         (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.mp_fragment_title_text)
     }
 
     private fun initViewPager() {
         mTitles = resources.getStringArray(R.array.mp_main_titles)
-        val fragments = ArrayList<BaseFragment>()
+        val fragments = ArrayList<Fragment>()
         fragments.add(SongFragment())
         fragments.add(ArtistFragment())
         fragments.add(SpecialFragment())
 
 
         val adapter = MainPagerAdapter(childFragmentManager, mTitles, fragments)
-        mViewPager.adapter = adapter
-        mTabLayout.setupWithViewPager(mViewPager)
+        mBinding.viewpager.adapter = adapter
+        mBinding.tablayout.setupWithViewPager(mBinding.viewpager)
     }
 
     override val layoutId: Int

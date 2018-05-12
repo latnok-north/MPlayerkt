@@ -1,4 +1,4 @@
-package com.murphy.mplayer_kt.ui.fragment.song
+package com.murphy.mplayer_kt.ui.viewmodel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -10,7 +10,6 @@ import com.murphy.library.data.source.LocalDataSource
 import com.murphy.library.rx.BaseObserver
 
 class SongViewModel : BaseViewModel() {
-
     var mSongs: MutableLiveData<ArrayList<SongModel>>? = null
     var dataSource: LocalDataSource? = null
 
@@ -39,20 +38,31 @@ class SongViewModel : BaseViewModel() {
         if (dataSource == null) {
             dataSource = LocalDataSource()
         }
-        dataSource?.scanMusic(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>() {
 
-            @Throws(Exception::class)
-            override fun onSuccess(folders: ArrayList<SongModel>) {
-//                mAdapter.addData(folders as MutableList<SongModel>)
-//                mAdapter.notifyDataSetChanged()
-                mSongs?.value = folders
+        dataSource?.scanMusic(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>(){
+            override fun onSuccess(t: ArrayList<SongModel>) {
+                mSongs?.value = t
             }
 
-            @Throws(Exception::class)
             override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
-
             }
+
         })
+
+//        dataSource?.scanMusic(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>() {
+//
+//            @Throws(Exception::class)
+//            override fun onSuccess(folders: ArrayList<SongModel>) {
+////                mAdapter.addData(folders as MutableList<SongModel>)
+////                mAdapter.notifyDataSetChanged()
+//                mSongs?.value = folders
+//            }
+//
+//            @Throws(Exception::class)
+//            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+//
+//            }
+//        })
     }
 
     private fun loadArtist(mContext: Context) {

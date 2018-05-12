@@ -7,16 +7,19 @@ import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.utils.LogUtils
 import com.murphy.mplayer_kt.ui.adapter.ArtistAdapter
 import com.murphy.mplayer_kt.ui.fragment.BaseItemListFragment
-import com.murphy.mplayer_kt.ui.fragment.song.SongViewModel
+import com.murphy.mplayer_kt.ui.viewmodel.SongViewModel
 
 /**
  * Created by murphy on 2018/4/1.
  */
-class SpecialFragment : BaseItemListFragment() {
+class SpecialFragment : BaseItemListFragment<SongViewModel>() {
+    override fun initViewModel(): SongViewModel {
+        return SongViewModel()
+    }
+
     lateinit var mAdapter: ArtistAdapter
     lateinit var mList: ArrayList<ArtistModel>
 
-    lateinit var mModel: SongViewModel
 
     override fun generateAdapter(): RecyclerView.Adapter<*> {
         return mAdapter
@@ -24,13 +27,12 @@ class SpecialFragment : BaseItemListFragment() {
 
     override fun onBaseItemViewCreated() {
         mList = ArrayList()
-        mModel = ViewModelProviders.of(activity!!).get(SongViewModel::class.java)
         for (i in 0..19) {
             mList.add(ArtistModel("第" + i + "首"))
         }
         mAdapter = ArtistAdapter(activity!!, mList)
 
-        mModel.getValue()?.observe(this, Observer { t ->
+        viewModel?.getValue()?.observe(this, Observer { t ->
             if (t != null) {
                 LogUtils.d("SpecialFragment_vvv", t)
             }

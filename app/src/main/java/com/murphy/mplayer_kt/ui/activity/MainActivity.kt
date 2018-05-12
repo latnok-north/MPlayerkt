@@ -1,22 +1,21 @@
 package com.murphy.mplayer_kt.ui.activity
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
 import com.murphy.library.base.BaseActivity
 import com.murphy.library.widget.SlidingUpPanelLayout.SlidingUpPanelLayout
 import com.murphy.mplayer_kt.R
+import com.murphy.mplayer_kt.databinding.ActivityMainBinding
 import com.murphy.mplayer_kt.ui.fragment.MainFragment
-import kotterknife.bindView
+import com.murphy.mplayer_kt.ui.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.include_main_content.view.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    val mDrawerLayout: DrawerLayout by bindView(R.id.drawerLayout)
-    val mNavigationView: NavigationView by bindView(R.id.navView)
-    val mSlidingLayout: SlidingUpPanelLayout by bindView(R.id.slidingLayout)
-
+    override fun initViewModel(): MainViewModel {
+        return MainViewModel()
+    }
 
     override fun onBaseCreate(savedInstanceState: Bundle?) {
         navigateLibrary()
@@ -29,14 +28,15 @@ class MainActivity : BaseActivity() {
     private fun navigateLibrary() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer, MainFragment.newInstance()).commitAllowingStateLoss()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> {
                 when {
-                    mSlidingLayout.panelState === SlidingUpPanelLayout.PanelState.EXPANDED -> mSlidingLayout.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
-                    isNavigatingMain() -> mDrawerLayout.openDrawer(GravityCompat.START)
+                    mBinding.mainContent?.slidingLayout?.panelState === SlidingUpPanelLayout.PanelState.EXPANDED -> mBinding.mainContent?.slidingLayout?.panelState = SlidingUpPanelLayout.PanelState.COLLAPSED
+                    isNavigatingMain() -> mBinding.drawerLayout.openDrawer(GravityCompat.START)
                     else -> super.onBackPressed()
                 }
                 return true

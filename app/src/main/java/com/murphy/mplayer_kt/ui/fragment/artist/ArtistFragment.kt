@@ -8,16 +8,18 @@ import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.utils.LogUtils
 import com.murphy.mplayer_kt.ui.adapter.ArtistAdapter
 import com.murphy.mplayer_kt.ui.fragment.BaseItemListFragment
-import com.murphy.mplayer_kt.ui.fragment.song.SongViewModel
+import com.murphy.mplayer_kt.ui.viewmodel.ArtistViewModel
 
 /**
  * Created by murphy on 2018/4/1.
  */
-class ArtistFragment : BaseItemListFragment() {
+class ArtistFragment : BaseItemListFragment<ArtistViewModel>() {
+    override fun initViewModel(): ArtistViewModel {
+        return ArtistViewModel()
+    }
+
     lateinit var mAdapter: ArtistAdapter
     lateinit var mList: ArrayList<ArtistModel>
-
-    lateinit var mModel: SongViewModel
 
     override fun generateAdapter(): RecyclerView.Adapter<*> {
         return mAdapter
@@ -29,7 +31,7 @@ class ArtistFragment : BaseItemListFragment() {
 
     override fun onBaseItemViewCreated() {
 
-        mModel = ViewModelProviders.of(activity!!).get(SongViewModel::class.java)
+//        mModel = ViewModelProviders.of(activity!!).get(SongViewModel::class.java)
 
         mList = ArrayList()
         for (i in 0..19) {
@@ -37,10 +39,10 @@ class ArtistFragment : BaseItemListFragment() {
         }
         mAdapter = ArtistAdapter(activity!!, mList)
 
-        mModel.getValue()?.observe(this, Observer { t ->
-            if (t != null) {
-                LogUtils.d("SingerFragment_vvv", t)
-            }
-        })
+//        mModel.getValue()?.observe(this, Observer { t ->
+//            if (t != null) {
+//                LogUtils.d("SingerFragment_vvv", t)
+//            }
+//        })
     }
 }

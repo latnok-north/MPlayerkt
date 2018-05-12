@@ -5,17 +5,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Button
 import com.murphy.library.base.BaseLazyFragment
+import com.murphy.library.base.BaseViewModel
 import com.murphy.mplayer_kt.R
+import com.murphy.mplayer_kt.databinding.FragmentListBinding
 import kotterknife.bindView
 
 /**
  * Created by murphy on 2018/4/1.
  */
-abstract class BaseItemListFragment : BaseLazyFragment() {
-
-    val refreshLayout: SwipeRefreshLayout by bindView(R.id.refreshLayout)
-    val recyclerView: RecyclerView by bindView(R.id.recyclerView)
-    val btnUpdate: Button by bindView(R.id.btnUpdate)
+abstract class BaseItemListFragment<VM : BaseViewModel> : BaseLazyFragment<FragmentListBinding, VM>() {
 
     abstract fun generateAdapter(): RecyclerView.Adapter<*>
     abstract fun onBaseItemViewCreated()
@@ -23,8 +21,8 @@ abstract class BaseItemListFragment : BaseLazyFragment() {
 
     override fun onLazyLoad() {
         onBaseItemViewCreated()
-        recyclerView.adapter = generateAdapter()
-        recyclerView.layoutManager = generateLayoutManager()
+        mBinding.recyclerView.adapter = generateAdapter()
+        mBinding.recyclerView.layoutManager = generateLayoutManager()
     }
 
     open fun generateLayoutManager(): RecyclerView.LayoutManager {

@@ -8,15 +8,18 @@ import com.murphy.library.adapter.DividerItemDecoration
 import com.murphy.library.data.model.SongModel
 import com.murphy.mplayer_kt.ui.adapter.SongAdapter
 import com.murphy.mplayer_kt.ui.fragment.BaseItemListFragment
-import com.murphy.mplayer_kt.ui.fragment.song.SongViewModel
+import com.murphy.mplayer_kt.ui.viewmodel.SongViewModel
 
 
 /**
  * Created by murphy on 2018/4/1.
  */
-class SongFragment : BaseItemListFragment() {
+class SongFragment : BaseItemListFragment<SongViewModel>() {
 
-    lateinit var mModel: SongViewModel
+    override fun initViewModel(): SongViewModel {
+        return SongViewModel()
+    }
+
 
     lateinit var mAdapter: SongAdapter
     lateinit var mList: ArrayList<SongModel>
@@ -25,20 +28,19 @@ class SongFragment : BaseItemListFragment() {
     }
 
     override fun onBaseItemViewCreated() {
-        mModel = ViewModelProviders.of(activity!!).get(SongViewModel::class.java)
-
 
         mList = ArrayList()
         mAdapter = SongAdapter(activity!!, mList)
-        recyclerView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL_LIST, true))
-        mModel.getSongList(activity!!)?.observe(this, Observer<ArrayList<SongModel>> { t ->
+        mBinding.recyclerView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL_LIST, true))
+        viewModel?.getSongList(activity!!)?.observe(this, Observer<ArrayList<SongModel>> { t ->
             mAdapter.addData(t!!)
             mAdapter.notifyDataSetChanged()
         })
 
-        btnUpdate.setOnClickListener({
-            mModel.setValue(System.currentTimeMillis().toString())
+        mBinding.btnUpdate.setOnClickListener({
+            viewModel?.setValue(System.currentTimeMillis().toString())
         })
+
     }
 
 

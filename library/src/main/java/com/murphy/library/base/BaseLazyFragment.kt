@@ -1,5 +1,6 @@
 package com.murphy.library.base
 
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.View
 import com.murphy.library.utils.LogUtils
@@ -7,7 +8,7 @@ import com.murphy.library.utils.LogUtils
 /**
  * Created by murphy on 2018/3/31.
  */
-abstract class BaseLazyFragment : BaseFragment() {
+abstract class BaseLazyFragment<VB : ViewDataBinding, VM : BaseViewModel> : BaseFragment<VB, VM>() {
 
     var isViewCreated = false
     var isViewVisible = false

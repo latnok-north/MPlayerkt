@@ -5,4 +5,5 @@ package com.murphy.library.adapter
  */
 interface IAdapterView<T> {
     fun bind(item: T?, position: Int)
+//    fun getLayoutResId(): Int
 }

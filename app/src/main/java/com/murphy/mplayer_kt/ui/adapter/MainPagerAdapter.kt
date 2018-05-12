@@ -8,7 +8,7 @@ import com.murphy.library.base.BaseFragment
 /**
  * Created by murphy on 2018/4/5.
  */
-class MainPagerAdapter(fm: FragmentManager, var mTitles: Array<String>, var mFragments: ArrayList<BaseFragment>) : FragmentPagerAdapter(fm) {
+class MainPagerAdapter(fm: FragmentManager, var mTitles: Array<String>, var mFragments: ArrayList<Fragment>) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return mFragments[position]
     }
