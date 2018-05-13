@@ -1,15 +1,17 @@
 package com.murphy.library.net
 
+import com.murphy.library.Constants
 import com.murphy.library.net.interceptor.CacheInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class RetrofitClient() {
     companion object {
-        private val BASE_URL: String = ""
+        private val BASE_URL: String = Constants.BASE_API_URL_KUGOU
         private val mClient by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             RetrofitClient()
         }
@@ -41,6 +43,7 @@ class RetrofitClient() {
                 .Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(mHttpClient)
                 .build()
     }
