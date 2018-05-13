@@ -4,8 +4,10 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.murphy.library.adapter.SpacesItemDecoration
 import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.utils.LogUtils
+import com.murphy.mplayer_kt.R
 import com.murphy.mplayer_kt.ui.adapter.ArtistAdapter
 import com.murphy.mplayer_kt.ui.fragment.BaseItemListFragment
 import com.murphy.mplayer_kt.ui.viewmodel.ArtistViewModel
@@ -38,7 +40,8 @@ class ArtistFragment : BaseItemListFragment<ArtistViewModel>() {
             mList.add(ArtistModel("第" + i + "首"))
         }
         mAdapter = ArtistAdapter(activity!!, mList)
-
+        val spacingInPixels = activity!!.resources.getDimensionPixelSize(R.dimen.spacing_card_album_grid)
+        mBinding.recyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
 //        mModel.getValue()?.observe(this, Observer { t ->
 //            if (t != null) {
 //                LogUtils.d("SingerFragment_vvv", t)

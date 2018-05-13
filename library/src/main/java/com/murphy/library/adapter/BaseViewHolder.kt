@@ -5,10 +5,16 @@ import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-abstract class BaseViewHolder<VB : ViewDataBinding> : RecyclerView.ViewHolder {
+open class BaseViewHolder<VB : ViewDataBinding> : RecyclerView.ViewHolder {
 
     protected lateinit var mBinding: VB
-    constructor(view: View) : super(view) {
-        mBinding = DataBindingUtil.bind(view)
+
+    constructor(vb : VB) : super(vb.root) {
+        mBinding = vb
     }
+
+    fun getBinding() : VB {
+        return mBinding
+    }
+
 }

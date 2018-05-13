@@ -3,6 +3,7 @@
           package="com.murphy.mplayer_kt">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="com.murphy.library.base.MPApplication"
         android:allowBackup="true"

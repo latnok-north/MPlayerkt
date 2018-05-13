@@ -28,8 +28,7 @@ class LocalDataSource {
     }
 
     fun scanArtist(context: Context): Observable<ArrayList<ArtistModel>> {
-        return Observable.create<ArrayList<ArtistModel>> {
-            e ->
+        return Observable.create<ArrayList<ArtistModel>> { e ->
             var list = MusicHelper.getArtists(context)
             e.onNext(list)
             e.onComplete()

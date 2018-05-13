@@ -1,7 +1,7 @@
 def supportVersion = "27.0.2"
 def rxBindingVersion = "0.4.0"
-def retrofitVersion = "2.2.0"
-def okHttpVersion = "3.7.0"
+def retrofitVersion = "2.4.0"
+def okHttpVersion = "3.10.0"
 def stethoVersion = "1.5.0"
 def butterKnifeVersion = "8.8.1"
 def daggerVersion = "2.8"
@@ -41,7 +41,8 @@ project.ext {
 
             //retrofit
             "retrofit"                    : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            "adapter-rxjava"              : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            "retrofit-rxjava"              : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            "retrofit-gson"               : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
 
             //dagger
             "dagger"                      : "com.google.dagger:dagger:${daggerVersion}",
@@ -52,6 +53,7 @@ project.ext {
             "stetho-okhttp3"              : "com.facebook.stetho:stetho-okhttp3:${stethoVersion}",
 
             //others
+            "okhttp3"                     : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
             "okhttp3-logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             "ormlite-android"             : "com.j256.ormlite:ormlite-android:4.48",
             "fastjson"                    : "com.alibaba:fastjson:1.2.31",
