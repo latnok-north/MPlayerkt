@@ -4,4 +4,6 @@ import com.murphy.library.base.BaseViewModel
 
 class ArtistViewModel:BaseViewModel() {
 
+
+
 }

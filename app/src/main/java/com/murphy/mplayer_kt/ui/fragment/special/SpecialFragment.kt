@@ -28,7 +28,7 @@ class SpecialFragment : BaseItemListFragment<SongViewModel>() {
     override fun onBaseItemViewCreated() {
         mList = ArrayList()
         for (i in 0..19) {
-            mList.add(ArtistModel("第" + i + "首"))
+//            mList.add(ArtistModel("第" + i + "首"))
         }
         mAdapter = ArtistAdapter(activity!!, mList)
 

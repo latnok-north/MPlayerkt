@@ -14,4 +14,7 @@ data class SongModel(var id: Long,
                      var album: String,
                      var path: String,
                      var duration: Long,
-                     var size: Long)
+                     var size: Long,
+                     var artistId: Long,
+                     var albumId: Long,
+                     var trackNumber: Int)

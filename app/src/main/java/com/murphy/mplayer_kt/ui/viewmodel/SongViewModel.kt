@@ -6,14 +6,19 @@ import android.content.Context
 import com.murphy.library.base.BaseViewModel
 import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.SongModel
+import com.murphy.library.data.respository.SongRespository
 import com.murphy.library.data.source.LocalDataSource
 import com.murphy.library.rx.BaseObserver
 
 class SongViewModel : BaseViewModel() {
     var mSongs: MutableLiveData<ArrayList<SongModel>>? = null
-    var dataSource: LocalDataSource? = null
+    private var respository: SongRespository? = null
 
     var mUpdateValue: MutableLiveData<String>? = null
+
+    init {
+        respository = SongRespository()
+    }
 
     fun setValue(item: String) {
         if (mUpdateValue == null) {
@@ -35,48 +40,12 @@ class SongViewModel : BaseViewModel() {
     }
 
     private fun loadMusic(mContext: Context) {
-        if (dataSource == null) {
-            dataSource = LocalDataSource()
-        }
-
-        dataSource?.scanMusic(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>(){
+        respository?.getAllSongs(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>(){
             override fun onSuccess(t: ArrayList<SongModel>) {
                 mSongs?.value = t
             }
 
             override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
-            }
-
-        })
-
-//        dataSource?.scanMusic(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>() {
-//
-//            @Throws(Exception::class)
-//            override fun onSuccess(folders: ArrayList<SongModel>) {
-////                mAdapter.addData(folders as MutableList<SongModel>)
-////                mAdapter.notifyDataSetChanged()
-//                mSongs?.value = folders
-//            }
-//
-//            @Throws(Exception::class)
-//            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
-//
-//            }
-//        })
-    }
-
-    private fun loadArtist(mContext: Context) {
-        if (dataSource == null) {
-            dataSource = LocalDataSource()
-        }
-
-        dataSource?.scanArtist(mContext)!!.subscribe(object : BaseObserver<ArrayList<ArtistModel>>() {
-            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
-
-            }
-
-            override fun onSuccess(t: ArrayList<ArtistModel>) {
-
             }
 
         })

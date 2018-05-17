@@ -37,7 +37,7 @@ class ArtistFragment : BaseItemListFragment<ArtistViewModel>() {
 
         mList = ArrayList()
         for (i in 0..19) {
-            mList.add(ArtistModel("第" + i + "首"))
+//            mList.add(ArtistModel("第" + i + "首"))
         }
         mAdapter = ArtistAdapter(activity!!, mList)
         val spacingInPixels = activity!!.resources.getDimensionPixelSize(R.dimen.spacing_card_album_grid)

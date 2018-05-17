@@ -64,7 +64,7 @@ class MusicHelper {
             val displayName = extractMetadata(metadataRetriever, MediaMetadataRetriever.METADATA_KEY_TITLE, file.name)
             val artist = extractMetadata(metadataRetriever, MediaMetadataRetriever.METADATA_KEY_ARTIST, UNKNOWN)
             val album = extractMetadata(metadataRetriever, MediaMetadataRetriever.METADATA_KEY_ALBUM, UNKNOWN)
-            val song = SongModel(0, title, displayName, artist, album, file.absolutePath, duration.toLong(), file.length())
+            val song = SongModel(0, title, displayName, artist, album, file.absolutePath, duration.toLong(), file.length(), 0, 0,0 )
             Log.i("MusicHelper", song.toString())
             return song
         }
@@ -102,10 +102,13 @@ class MusicHelper {
                     val size = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE))
 
 
-                    val song = SongModel(id, title, display_name, artist, artist, path, duration.toLong(), size.toLong())
+                    val song = SongModel(id, title, display_name, artist, artist, path, duration.toLong(), size.toLong(), 0, 0, 0)
                     list.add(song)
                 }
+
+                cursor.close()
             }
+
 
             return list
         }
@@ -126,9 +129,11 @@ class MusicHelper {
                     val size = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.SIZE))
 
 
-                    val artistModel = ArtistModel(artist)
-                    list.add(artistModel)
+//                    val artistModel = ArtistModel(artist)
+//                    list.add(artistModel)
                 }
+
+                cursor.close()
             }
             return list
         }
