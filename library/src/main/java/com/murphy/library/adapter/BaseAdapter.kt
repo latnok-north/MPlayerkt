@@ -9,7 +9,7 @@ import android.os.Build.VERSION_CODES.M
 import android.view.LayoutInflater
 
 
-abstract class BaseAdapter<M>(private val mContext: Context, var mList: ArrayList<M>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class BaseAdapter<M, VB: ViewDataBinding>(var mList: ArrayList<M>) : RecyclerView.Adapter<BaseViewHolder<VB>>() {
 
     var mItemClickListener: OnItemClickListener? = null
     var mItemLongClickListener: OnItemLongClickListener? = null
@@ -17,8 +17,8 @@ abstract class BaseAdapter<M>(private val mContext: Context, var mList: ArrayLis
 
     abstract fun getLayoutId(type: Int) : Int
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        var binding : ViewDataBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<VB> {
+        var binding : VB = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
                 getLayoutId(viewType), parent, false)
         var holder = BaseViewHolder(binding)
         if (mItemClickListener != null) {

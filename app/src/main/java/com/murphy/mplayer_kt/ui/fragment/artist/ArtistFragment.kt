@@ -20,11 +20,9 @@ class ArtistFragment : BaseItemListFragment<ArtistViewModel>() {
         return ArtistViewModel()
     }
 
-    lateinit var mAdapter: ArtistAdapter
-    lateinit var mList: ArrayList<ArtistModel>
 
     override fun generateAdapter(): RecyclerView.Adapter<*> {
-        return mAdapter
+        return viewModel.mAdapter
     }
 
     override fun generateLayoutManager(): RecyclerView.LayoutManager {
@@ -32,20 +30,16 @@ class ArtistFragment : BaseItemListFragment<ArtistViewModel>() {
     }
 
     override fun onBaseItemViewCreated() {
+        initView()
+        initData()
+    }
 
-//        mModel = ViewModelProviders.of(activity!!).get(SongViewModel::class.java)
-
-        mList = ArrayList()
-        for (i in 0..19) {
-//            mList.add(ArtistModel("第" + i + "首"))
-        }
-        mAdapter = ArtistAdapter(activity!!, mList)
+    private fun initView() {
         val spacingInPixels = activity!!.resources.getDimensionPixelSize(R.dimen.spacing_card_album_grid)
         mBinding.recyclerView.addItemDecoration(SpacesItemDecoration(spacingInPixels))
-//        mModel.getValue()?.observe(this, Observer { t ->
-//            if (t != null) {
-//                LogUtils.d("SingerFragment_vvv", t)
-//            }
-//        })
+    }
+
+    private fun initData() {
+        viewModel.loadData(activity!!)
     }
 }

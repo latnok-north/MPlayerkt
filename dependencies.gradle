@@ -8,6 +8,7 @@ def daggerVersion = "2.8"
 def kotlinVersion = "1.2.31"
 def layoutVersion = "1.0.2"
 def gsonVersion = "2.8.2"
+def glideVersion = "4.7.1"
 project.ext {
     android = [
             compileSdkVersion: 25,
@@ -41,7 +42,7 @@ project.ext {
 
             //retrofit
             "retrofit"                    : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            "retrofit-rxjava"              : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            "retrofit-rxjava"              : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             "retrofit-gson"               : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
 
             //dagger
@@ -64,6 +65,8 @@ project.ext {
             "kotlin-compiler"             : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
             "gson"                        : "com.google.code.gson:gson:$gsonVersion",
 
+            "glide" : "com.github.bumptech.glide:glide:$glideVersion",
+            "glide-compiler" : "com.github.bumptech.glide:compiler:$glideVersion",
 
             // ViewModel and LiveData
             "lifecycle"                   : "android.arch.lifecycle:runtime:1.0.3",

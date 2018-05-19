@@ -21,7 +21,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     abstract val layoutId: Int
     var mRootView: View? = null
     protected lateinit var mBinding: VB
-    protected var viewModel: VM? = null
+    protected lateinit var viewModel: VM
     abstract fun onBaseViewCreated(savedInstanceState: Bundle?)
     abstract fun initViewModel(): VM
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

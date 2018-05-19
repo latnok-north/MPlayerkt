@@ -7,17 +7,17 @@ import com.murphy.library.base.BaseViewModel
 import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.SongModel
 import com.murphy.library.data.respository.SongRespository
-import com.murphy.library.data.source.LocalDataSource
 import com.murphy.library.rx.BaseObserver
 
 class SongViewModel : BaseViewModel() {
-    var mSongs: MutableLiveData<ArrayList<SongModel>>? = null
-    private var respository: SongRespository? = null
+    private var mSongs: MutableLiveData<ArrayList<SongModel>>
+    private var respository: SongRespository
 
     var mUpdateValue: MutableLiveData<String>? = null
 
     init {
         respository = SongRespository()
+        mSongs = MutableLiveData()
     }
 
     fun setValue(item: String) {
@@ -27,25 +27,23 @@ class SongViewModel : BaseViewModel() {
         mUpdateValue?.value = item
     }
 
-    fun getValue() : LiveData<String>? {
+    fun getValue(): LiveData<String>? {
         return mUpdateValue
     }
 
-    fun getSongList(mContext: Context) : LiveData<ArrayList<SongModel>>?{
-        if (mSongs == null) {
-            mSongs = MutableLiveData()
-            loadMusic(mContext)
-        }
+    fun getSongList(mContext: Context): LiveData<ArrayList<SongModel>> {
+        loadMusic(mContext)
         return mSongs
     }
 
     private fun loadMusic(mContext: Context) {
-        respository?.getAllSongs(mContext)!!.subscribe(object : BaseObserver<ArrayList<SongModel>>(){
+        respository.getAllSongs(mContext).subscribe(object : BaseObserver<ArrayList<SongModel>>() {
             override fun onSuccess(t: ArrayList<SongModel>) {
-                mSongs?.value = t
+                mSongs.value = t
             }
 
-            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+            override fun onFailure(e: Throwable) {
+
             }
 
         })

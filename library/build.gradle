@@ -74,6 +74,11 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     api rootProject.ext.dependencies["kotlin"]
 
+
+
+    api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+
 //    kapt "com.android.databinding:compiler:3.0.1"
 
     // all below should be added automatically by the plugin

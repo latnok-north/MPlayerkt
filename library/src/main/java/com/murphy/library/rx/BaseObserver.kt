@@ -17,7 +17,16 @@ abstract class BaseObserver<T> : Observer<T> {
     protected abstract fun onSuccess(t: T)
 
     @Throws(Exception::class)
-    protected abstract fun onFailure(e: Throwable, isNetWorkError: Boolean)
+    protected fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+        if (isNetWorkError) {
+            onFailure(e)
+        } else{
+            onFailure(e)
+        }
+    }
+
+    protected abstract fun onFailure(e: Throwable)
+
 
     override fun onSubscribe(d: Disposable) {
         onRequestStart()

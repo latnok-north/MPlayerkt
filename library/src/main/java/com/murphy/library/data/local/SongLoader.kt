@@ -7,7 +7,6 @@ import android.text.TextUtils
 import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.SongModel
 import com.murphy.library.helper.PreferenceHelper
-import rx.Observable
 
 class SongLoader {
     companion object {
