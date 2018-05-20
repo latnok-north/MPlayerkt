@@ -53,16 +53,22 @@ dependencies {
     api rootProject.ext.dependencies["support-v4"]
     api rootProject.ext.dependencies["constraint"]
     api rootProject.ext.dependencies["design"]
-
     //retrofit2
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["retrofit-rxjava"]
     api rootProject.ext.dependencies["retrofit-gson"]
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["okhttp3-logging-interceptor"]
-
+    //rx
     api rootProject.ext.dependencies["rxandroid"]
     api rootProject.ext.dependencies["rxjava"]
+
+    api rootProject.ext.dependencies["kotlin"]
+
+    implementation rootProject.ext.dependencies["glide"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
+
+
     // 打包
 //    api rootProject.ext.dependencies["walle"]
 
@@ -70,15 +76,6 @@ dependencies {
 //    api rootProject.ext.dependencies["lifecycle-extensions"]
 //    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
 //
-    api rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
-    api rootProject.ext.dependencies["kotlin"]
-
-
-
-    implementation rootProject.ext.dependencies["glide"]
-    kapt rootProject.ext.dependencies["glide-compiler"]
-
     // all below should be added automatically by the plugin
 //    api "io.objectbox:objectbox-android:$objectboxVersion"
 //    kapt "io.objectbox:objectbox-processor:$objectboxVersion"
