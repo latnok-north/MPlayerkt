@@ -11,6 +11,7 @@ import com.murphy.library.data.respository.ArtistRespository
 import com.murphy.library.rx.BaseObserver
 import com.murphy.library.utils.ImageUtils
 import com.murphy.library.utils.LogUtils
+import com.murphy.mplayer_kt.R
 import com.murphy.mplayer_kt.ui.adapter.ArtistAdapter
 import io.reactivex.Observable
 import java.util.*
@@ -52,38 +53,30 @@ class ArtistViewModel : BaseViewModel() {
                 LogUtils.d("ArtistAdapter", t.toString())
                 if (t.artist != null) {
                     val list = t.artist.image
-                    var small = ""
-                    var medium = ""
-                    var large = ""
-                    var extralarge = ""
-
-                    if (list.size > 0) {
-                        small = list[0].url
-                    }
-
-                    if (list.size > 1) {
-                        medium = list[1].url
-                    }
-
-                    if (list.size > 2) {
-                        large = list[2].url
-                    }
-
-                    if (list.size > 3) {
-                        extralarge = list[3].url
-                    }
+                    val small = getIndexUrl(list, 0)
+                    val medium = getIndexUrl(list, 1)
+                    val large = getIndexUrl(list, 2)
+                    val extraLarge = getIndexUrl(list, 3)
 
                     val artistArtModel = ArtistArtModel(small,
                             medium,
                             large,
-                            extralarge)
-                    ImageUtils.display(getUrl(artistArtModel), imageView)
+                            extraLarge)
+
+                    ImageUtils.display(getUrl(artistArtModel), imageView, R.attr.default_artist_drawable)
                 }
             }
         })
     }
 
-    fun getUrl(model: ArtistArtModel): String {
+    private fun getIndexUrl(list: List<NewArtistModel.ArtistBeanX.ImageBeanX>, index: Int): String {
+        if (list.size > index) {
+            return list[index].url
+        }
+        return ""
+    }
+
+    private fun getUrl(model: ArtistArtModel): String {
         if (!TextUtils.isEmpty(model.extralarge)) {
             return model.extralarge
         }
@@ -103,7 +96,7 @@ class ArtistViewModel : BaseViewModel() {
         return ""
     }
 
-    fun getImageUrl(name: String): Observable<NewArtistModel> {
+    private fun getImageUrl(name: String): Observable<NewArtistModel> {
         return respository.getArtistImageModel(name)
     }
 

@@ -35,7 +35,7 @@ abstract class AbstractSummaryAdapter<T, out V : IAdapterView<T>>(mContext: Cont
         return null
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_HEADER) {
             object : RecyclerView.ViewHolder(createHeaderView()) {}
         } else if (viewType == VIEW_TYPE_FOOTER) {

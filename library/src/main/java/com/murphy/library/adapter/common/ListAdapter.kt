@@ -20,7 +20,7 @@ abstract class ListAdapter<T, out V : IAdapterView<T>>(private val mContext: Con
 
     abstract fun createView(context: Context, viewType: Int): V
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView: View = createView(mContext, viewType) as View
         val holder = object : RecyclerView.ViewHolder(itemView) {}
         if (mItemClickListener != null) {
@@ -44,6 +44,7 @@ abstract class ListAdapter<T, out V : IAdapterView<T>>(private val mContext: Con
         }
         return holder
     }
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 

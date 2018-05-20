@@ -13,5 +13,11 @@ class ATEUtil {
             else
                 "light_theme"
         }
+
+        fun getDefaultSingerDrawable(context: Context, res : Int): Drawable {
+            val defaultSinger = TypedValue()
+            context.theme.resolveAttribute(res, defaultSinger, true)
+            return context.resources.getDrawable(defaultSinger.resourceId)
+        }
     }
 }

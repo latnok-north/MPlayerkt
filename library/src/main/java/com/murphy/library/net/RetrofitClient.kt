@@ -21,9 +21,9 @@ class RetrofitClient() {
         }
     }
 
-    val DEFAULT_READ_TIMEOUT_MILLIS : Long = 15 * 1000
-    val DEFAULT_WRITE_TIMEOUT_MILLIS : Long = 20 * 1000
-    val DEFAULT_CONNECT_TIMEOUT_MILLIS : Long = 20 * 1000
+    val DEFAULT_READ_TIMEOUT_MILLIS: Long = 15 * 1000
+    val DEFAULT_WRITE_TIMEOUT_MILLIS: Long = 20 * 1000
+    val DEFAULT_CONNECT_TIMEOUT_MILLIS: Long = 20 * 1000
 
     private var mHttpClient: OkHttpClient
     private var mRetrofit: Retrofit
@@ -50,6 +50,10 @@ class RetrofitClient() {
 
     fun <T> create(clazz: Class<T>): T {
         return mRetrofit.create(clazz)
+    }
+
+    fun getOkHttpClient(): OkHttpClient {
+        return mHttpClient
     }
 
 }

@@ -2,7 +2,6 @@ package com.murphy.mplayer_kt.ui.fragment.artist
 
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.widget.RecyclerView
 import com.murphy.library.adapter.DividerItemDecoration
 import com.murphy.library.data.model.SongModel
