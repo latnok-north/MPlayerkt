@@ -31,13 +31,13 @@ class SongFragment : BaseItemListFragment<SongViewModel>() {
         mList = ArrayList()
         mAdapter = SongAdapter(activity!!, mList)
         mBinding.recyclerView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL_LIST, true))
-        viewModel?.getSongList(activity!!)?.observe(this, Observer<ArrayList<SongModel>> { t ->
+        viewModel.getSongList(activity!!).observe(this, Observer<ArrayList<SongModel>> { t ->
             mAdapter.addData(t!!)
             mAdapter.notifyDataSetChanged()
         })
 
         mBinding.btnUpdate.setOnClickListener({
-            viewModel?.setValue(System.currentTimeMillis().toString())
+            viewModel.setValue(System.currentTimeMillis().toString())
         })
 
     }

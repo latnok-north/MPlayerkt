@@ -4,7 +4,6 @@ import android.text.TextUtils
 import android.widget.ImageView
 import com.murphy.library.glide.GlideApp
 
-//import com.bumptech.glide.Glide
 
 class ImageUtils {
 

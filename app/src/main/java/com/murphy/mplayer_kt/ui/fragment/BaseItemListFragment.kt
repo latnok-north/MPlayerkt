@@ -3,12 +3,10 @@ package com.murphy.mplayer_kt.ui.fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Button
 import com.murphy.library.base.BaseLazyFragment
 import com.murphy.library.base.BaseViewModel
 import com.murphy.mplayer_kt.R
 import com.murphy.mplayer_kt.databinding.FragmentListBinding
-import kotterknife.bindView
 
 /**
  * Created by murphy on 2018/4/1.

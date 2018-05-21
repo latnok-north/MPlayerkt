@@ -5,10 +5,12 @@ def okHttpVersion = "3.10.0"
 def stethoVersion = "1.5.0"
 def butterKnifeVersion = "8.8.1"
 def daggerVersion = "2.8"
-def kotlinVersion = "1.2.31"
+def kotlinVersion = "1.2.41"
 def layoutVersion = "1.0.2"
 def gsonVersion = "2.8.2"
 def glideVersion = "4.7.1"
+
+
 project.ext {
     android = [
             compileSdkVersion: 25,
@@ -57,12 +59,13 @@ project.ext {
             "okhttp3"                     : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
             "okhttp3-logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             "ormlite-android"             : "com.j256.ormlite:ormlite-android:4.48",
-            "fastjson"                    : "com.alibaba:fastjson:1.2.31",
             "butterknife"                 : "com.jakewharton:butterknife:${butterKnifeVersion}",
             "butterknife-compiler"        : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             "retrofit2-fastjson-converter": "com.github.BaronZ88:Retrofit2-FastJson-Converter:1.2",
             "kotlin"                      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion",
+            "kotlin-jre"                  : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion",
             "kotlin-compiler"             : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
+            "kotlin-gradle-plugin"        : "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion",
             "gson"                        : "com.google.code.gson:gson:$gsonVersion",
 
             "glide"                       : "com.github.bumptech.glide:glide:$glideVersion",

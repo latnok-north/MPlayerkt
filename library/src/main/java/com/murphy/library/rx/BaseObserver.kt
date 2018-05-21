@@ -17,7 +17,7 @@ abstract class BaseObserver<T> : Observer<T> {
     protected abstract fun onSuccess(t: T)
 
     @Throws(Exception::class)
-    protected fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+    private fun onFailure(e: Throwable, isNetWorkError: Boolean) {
         if (isNetWorkError) {
             onFailure(e)
         } else{

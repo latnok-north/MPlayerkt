@@ -20,15 +20,16 @@ android {
     }
 
     dataBinding {
-        enabled true
+        enabled = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT'
-    kapt "com.android.databinding:compiler:3.0.1"
     api project(':library')
+
+    //kotlin 和 databinding 兼容性处理
+    kapt "com.android.databinding:compiler:3.0.1"
 }
 
 repositories {

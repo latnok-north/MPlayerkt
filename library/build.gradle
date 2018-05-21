@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-//apply plugin: 'io.objectbox'
 android {
     compileSdkVersion 26
 
@@ -22,26 +21,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    android {
-        defaultConfig {
-            javaCompileOptions {
-                annotationProcessorOptions {
-                    arguments = ['objectbox.debug': 'true']
-                }
-            }
-        }
-
-        dataBinding {
-            enabled true
-        }
+    dataBinding {
+        enabled = true
     }
     kapt {
-        arguments {
-            arg("objectbox.modelPath", "$projectDir/schemas/objectbox.json")
-            arg("objectbox.debug", true)
-        }
+        generateStubs = true
     }
-
 }
 
 dependencies {
@@ -63,9 +48,11 @@ dependencies {
 
     api rootProject.ext.dependencies["kotlin"]
 
-    implementation rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide"]
     kapt rootProject.ext.dependencies["glide-compiler"]
 
+    //kotlin 和 databinding 兼容性处理
+    kapt "com.android.databinding:compiler:3.0.1"
 
     // 打包
 //    api rootProject.ext.dependencies["walle"]
@@ -73,12 +60,7 @@ dependencies {
 //    api rootProject.ext.dependencies["lifecycle"]
 //    api rootProject.ext.dependencies["lifecycle-extensions"]
 //    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
-//
-    // all below should be added automatically by the plugin
-//    api "io.objectbox:objectbox-android:$objectboxVersion"
-//    kapt "io.objectbox:objectbox-processor:$objectboxVersion"
-//    // some useful Kotlin extension functions
-//    api "io.objectbox:objectbox-kotlin:$objectboxVersion"
+
 }
 repositories {
     mavenCentral()

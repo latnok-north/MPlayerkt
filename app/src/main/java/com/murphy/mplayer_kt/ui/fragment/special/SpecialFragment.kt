@@ -1,9 +1,7 @@
 package com.murphy.mplayer_kt.ui.fragment.special
 
-import android.arch.lifecycle.Observer
 import android.support.v7.widget.RecyclerView
 import com.murphy.library.data.model.ArtistModel
-import com.murphy.library.utils.LogUtils
 import com.murphy.mplayer_kt.ui.adapter.ArtistAdapter
 import com.murphy.mplayer_kt.ui.fragment.BaseItemListFragment
 import com.murphy.mplayer_kt.ui.viewmodel.SpecialViewModel
