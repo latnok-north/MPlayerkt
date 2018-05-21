@@ -27,6 +27,7 @@ class ImageUtils {
             GlideApp.with(imageView.context)
                     .load(url)
                     .placeholder(ATEUtil.getDefaultSingerDrawable(imageView.context, default))
+                    .dontAnimate()
                     .fitCenter()
                     .into(imageView)
         }

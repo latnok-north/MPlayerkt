@@ -8,7 +8,7 @@ import com.murphy.library.net.RetrofitClient
 import okhttp3.OkHttpClient
 import java.io.InputStream
 
-class OkHttpUrlLoaderFactory(val client: OkHttpClient) : ModelLoaderFactory<GlideUrl, InputStream> {
+class OkHttpUrlLoaderFactory(private val client: OkHttpClient) : ModelLoaderFactory<GlideUrl, InputStream> {
 
     companion object {
         fun factory() :  OkHttpUrlLoaderFactory {

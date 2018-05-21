@@ -6,7 +6,7 @@ import com.bumptech.glide.load.model.ModelLoader
 import okhttp3.Call
 import java.io.InputStream
 
-class OkHttpUrlLoader(val client: Call.Factory) : ModelLoader<GlideUrl, InputStream> {
+class OkHttpUrlLoader(private val client: Call.Factory) : ModelLoader<GlideUrl, InputStream> {
 
 
     override fun buildLoadData(model: GlideUrl, width: Int, height: Int, options: Options): ModelLoader.LoadData<InputStream>? {
