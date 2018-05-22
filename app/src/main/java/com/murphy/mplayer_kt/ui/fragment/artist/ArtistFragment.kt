@@ -15,7 +15,6 @@ class ArtistFragment : BaseItemListFragment<ArtistViewModel>() {
         return ArtistViewModel()
     }
 
-
     override fun generateAdapter(): RecyclerView.Adapter<*> {
         return viewModel.mAdapter
     }

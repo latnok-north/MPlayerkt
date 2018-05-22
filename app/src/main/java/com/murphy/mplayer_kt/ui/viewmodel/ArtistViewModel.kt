@@ -43,30 +43,37 @@ class ArtistViewModel : BaseViewModel() {
         })
     }
 
-    fun handleImage(id: Long, name: String, imageView: ImageView) {
-
-        getImageUrl(name).subscribe(object : BaseObserver<NewArtistModel>() {
-            override fun onFailure(e: Throwable) {
-            }
-
-            override fun onSuccess(t: NewArtistModel) {
-                LogUtils.d("ArtistAdapter", t.toString())
-                if (t.artist != null) {
-                    val list = t.artist.image
-                    val small = getIndexUrl(list, 0)
-                    val medium = getIndexUrl(list, 1)
-                    val large = getIndexUrl(list, 2)
-                    val extraLarge = getIndexUrl(list, 3)
-
-                    val artistArtModel = ArtistArtModel(small,
-                            medium,
-                            large,
-                            extraLarge)
-
-                    ImageUtils.display(getUrl(artistArtModel), imageView, R.attr.default_artist_drawable)
+    fun handleImage(model : ArtistModel, imageView: ImageView) {
+        if (TextUtils.isEmpty(model.url)) {
+            getImageUrl(model.name).subscribe(object : BaseObserver<NewArtistModel>() {
+                override fun onFailure(e: Throwable) {
                 }
-            }
-        })
+
+                override fun onSuccess(t: NewArtistModel) {
+                    LogUtils.d("ArtistAdapter", t.toString())
+                    if (t.artist != null) {
+                        val list = t.artist.image
+                        val small = getIndexUrl(list, 0)
+                        val medium = getIndexUrl(list, 1)
+                        val large = getIndexUrl(list, 2)
+                        val extraLarge = getIndexUrl(list, 3)
+
+                        val artistArtModel = ArtistArtModel(model.id,
+                                small,
+                                medium,
+                                large,
+                                extraLarge)
+
+                        model.url = getUrl(artistArtModel)
+
+                    }
+
+                    ImageUtils.display(model.url!!, imageView, R.attr.default_artist_drawable)
+                }
+            })
+        } else {
+            ImageUtils.display(model.url!!, imageView, R.attr.default_artist_drawable)
+        }
     }
 
     private fun getIndexUrl(list: List<NewArtistModel.ArtistBeanX.ImageBeanX>, index: Int): String {
@@ -77,8 +84,8 @@ class ArtistViewModel : BaseViewModel() {
     }
 
     private fun getUrl(model: ArtistArtModel): String {
-        if (!TextUtils.isEmpty(model.extralarge)) {
-            return model.extralarge
+        if (!TextUtils.isEmpty(model.extraLarge)) {
+            return model.extraLarge
         }
 
         if (!TextUtils.isEmpty(model.large)) {

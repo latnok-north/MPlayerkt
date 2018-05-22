@@ -31,7 +31,7 @@ class ArtistLoader {
 
             if (cursor != null && cursor.moveToFirst()) {
                 do {
-                    val model = ArtistModel(cursor.getLong(0), cursor.getString(1), "", cursor.getInt(2), cursor.getInt(3))
+                    val model = ArtistModel(cursor.getLong(0), cursor.getString(1), "", cursor.getInt(2), cursor.getInt(3), "")
                     list.add(model)
                 } while (cursor.moveToNext())
 

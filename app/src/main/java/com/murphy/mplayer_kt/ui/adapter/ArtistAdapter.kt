@@ -18,14 +18,13 @@ import com.murphy.mplayer_kt.ui.viewmodel.ArtistViewModel
  */
 class ArtistAdapter(list: ArrayList<ArtistModel>, val viewModel: ArtistViewModel) : BaseAdapter<ArtistModel, ItemGridArtistBinding>(list) {
 
-    override fun onBindViewHolder(holder: BaseViewHolder<ItemGridArtistBinding>, position: Int) {
+
+    override fun onBindViewHolder(holder: BaseViewHolder<ItemGridArtistBinding>, position: Int, type: Int) {
         val item = mList[position]
         holder.getBinding().setVariable(BR.item, item)
         holder.getBinding().setVariable(BR.viewModel, viewModel)
+        viewModel.handleImage(item, holder.getBinding().ivArtistImage)
         holder.getBinding().executePendingBindings()
-
-        viewModel.handleImage(item.id, item.name, holder.getBinding().ivArtistImage)
-
     }
 
     override fun getLayoutId(type: Int): Int {

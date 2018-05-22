@@ -76,10 +76,11 @@ project.ext {
             "lifecycle-compiler"          : "android.arch.lifecycle:compiler:1.0.0",
             "lifecycle-extensions"        : "android.arch.lifecycle:extensions:1.0.0",
 
-            "room"                        : "android.arch.persistence.room:runtime:1.0.0",
-            "room-compiler"               : "android.arch.persistence.room:compiler:1.0.0",
-            "room-rxjava2"                : "android.arch.persistence.room:rxjava2:1.0.0",
-            "lifecycle-reactivestreams"   : "android.arch.lifecycle:reactivestreams:1.0.0",
+
+            "room"                        : "android.arch.persistence.room:runtime:1.1.0",
+            "room-compiler"               : "android.arch.persistence.room:compiler:1.1.0",
+            "room-rxjava2"                : "android.arch.persistence.room:rxjava2:1.1.0",
+            "lifecycle-reactivestreams"   : "android.arch.lifecycle:reactivestreams:1.1.0",
             "walle"                       : "com.meituan.android.walle:library:1.1.6",
     ]
 }

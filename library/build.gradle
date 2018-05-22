@@ -59,7 +59,13 @@ dependencies {
 
 //    api rootProject.ext.dependencies["lifecycle"]
 //    api rootProject.ext.dependencies["lifecycle-extensions"]
+
 //    annotationProcessor rootProject.ext.dependencies["lifecycle-compiler"]
+
+
+    api rootProject.ext.dependencies["room"]
+    api rootProject.ext.dependencies["room-rxjava2"]
+    annotationProcessor rootProject.ext.dependencies["room-compiler"]
 
 }
 repositories {

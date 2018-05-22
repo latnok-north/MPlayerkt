@@ -15,7 +15,13 @@ abstract class BaseAdapter<M, VB: ViewDataBinding>(var mList: ArrayList<M>) : Re
     var mItemLongClickListener: OnItemLongClickListener? = null
     var mLastItemClickPosition = RecyclerView.NO_POSITION
 
+
     abstract fun getLayoutId(type: Int) : Int
+    abstract fun onBindViewHolder(holder: BaseViewHolder<VB>, position: Int, type: Int)
+    final override fun onBindViewHolder(holder: BaseViewHolder<VB>, position: Int) {
+        val type = getItemViewType(position)
+        onBindViewHolder(holder, position, type)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<VB> {
         var binding : VB = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
