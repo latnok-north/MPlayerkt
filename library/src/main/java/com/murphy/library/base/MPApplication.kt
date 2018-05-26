@@ -5,13 +5,10 @@ import android.app.Application
 
 class MPApplication : Application() {
 
-
-//    lateinit var mBoxStore: BoxStore
-
     companion object {
-        var mInstance: MPApplication? = null
+        lateinit var mInstance: MPApplication
 
-        fun getInstance(): MPApplication? {
+        fun getInstance(): MPApplication {
             return mInstance
         }
     }

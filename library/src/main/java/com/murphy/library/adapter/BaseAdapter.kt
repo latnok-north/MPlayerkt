@@ -24,11 +24,10 @@ abstract class BaseAdapter<M, VB: ViewDataBinding>(var mList: ArrayList<M>) : Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<VB> {
-        var binding : VB = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
-                getLayoutId(viewType), parent, false)
-        var holder = BaseViewHolder(binding)
+
+        val holder = BaseViewHolder.create<VB>(parent, getLayoutId(viewType))
         if (mItemClickListener != null) {
-            binding.root.setOnClickListener {
+            holder.getBinding().root.setOnClickListener {
                 val position = holder.adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     mLastItemClickPosition = position
@@ -38,7 +37,7 @@ abstract class BaseAdapter<M, VB: ViewDataBinding>(var mList: ArrayList<M>) : Re
         }
 
         if (mItemLongClickListener != null) {
-            binding.root.setOnLongClickListener {
+            holder.getBinding().root.setOnLongClickListener {
                 val position = holder.adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     mItemLongClickListener?.onItemClick(position)

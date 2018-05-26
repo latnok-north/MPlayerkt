@@ -65,7 +65,7 @@ dependencies {
 
     api rootProject.ext.dependencies["room"]
     api rootProject.ext.dependencies["room-rxjava2"]
-    annotationProcessor rootProject.ext.dependencies["room-compiler"]
+    kapt rootProject.ext.dependencies["room-compiler"]
 
 }
 repositories {

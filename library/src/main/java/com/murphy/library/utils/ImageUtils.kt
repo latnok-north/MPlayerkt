@@ -23,9 +23,12 @@ class ImageUtils {
 //                return
 //            }
 
+            val drawable = ATEUtil.getDefaultSingerDrawable(imageView.context, default)
+            imageView.setImageDrawable(drawable)
+
             GlideApp.with(imageView.context)
                     .load(url)
-                    .placeholder(ATEUtil.getDefaultSingerDrawable(imageView.context, default))
+                    .placeholder(drawable)
                     .dontAnimate()
                     .fitCenter()
                     .into(imageView)

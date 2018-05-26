@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import com.murphy.library.data.local.SongLoader
 import com.murphy.library.data.model.SongModel
-import com.murphy.library.helper.MusicHelper
 import com.murphy.library.helper.PreferenceHelper
 import com.murphy.library.utils.RxJavaUtils
 import io.reactivex.Observable
@@ -20,6 +19,6 @@ class SongRespository {
             val list = SongLoader.getAllSong(context)
             e.onNext(list)
             e.onComplete()
-        }.compose(RxJavaUtils.setThread())
+        }.compose(RxJavaUtils.transformerForObservable())
     }
 }

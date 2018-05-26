@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.Log
 import com.murphy.library.Constants
 import com.murphy.library.data.local.ArtistLoader
-import com.murphy.library.data.model.ArtistArtModel
 import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.NewArtistModel
 import com.murphy.library.helper.PreferenceHelper
@@ -25,11 +24,11 @@ class ArtistRespository {
             val list = ArtistLoader.getAllArtist(context)
             e.onNext(list)
             e.onComplete()
-        }.compose(RxJavaUtils.setThread())
+        }.compose(RxJavaUtils.transformerForObservable())
     }
 
     fun getArtistImageModel(name: String): Observable<NewArtistModel> {
         val service = RetrofitClient.getInstance().create(LastFmApiService::class.java)
-        return service.getArtistInfo(Constants.BASE_API_URL_LASTFM + ApiConstants.getArtistInfo, name).compose(RxJavaUtils.setThread())
+        return service.getArtistInfo(Constants.BASE_API_URL_LASTFM + ApiConstants.getArtistInfo, name).compose(RxJavaUtils.transformerForObservable())
     }
 }
