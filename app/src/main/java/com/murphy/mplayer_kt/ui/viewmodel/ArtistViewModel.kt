@@ -71,11 +71,10 @@ class ArtistViewModel : BaseViewModel() {
     private fun getImageUrlFromNet(model : ArtistModel, imageView: ImageView) {
         getImageUrl(model.name).subscribe(object : BaseObserver<NewArtistModel>() {
             override fun onFailure(e: Throwable) {
-                ImageUtils.display(model.url!!, imageView, R.attr.default_artist_drawable)
+                ImageUtils.display("", imageView, R.attr.default_artist_drawable)
             }
 
             override fun onSuccess(t: NewArtistModel) {
-                LogUtils.d("ArtistAdapter", t.toString())
                 if (t.artist != null) {
                     val list = t.artist.image
                     val small = getIndexUrl(list, 0)
@@ -83,19 +82,29 @@ class ArtistViewModel : BaseViewModel() {
                     val large = getIndexUrl(list, 2)
                     val extraLarge = getIndexUrl(list, 3)
 
-                    val artistArtModel = ArtistArtModel(model.id,
-                            small,
-                            medium,
-                            large,
-                            extraLarge)
-                    mArtDataSource.addArtistArt(artistArtModel)
+                    val artistArtModel = addArtistArt(model.id, small, medium, large, extraLarge)
                     model.url = getUrl(artistArtModel)
-
+                } else {
+                    addArtistArt(model.id, "", "", "", "")
+                    model.url = ""
                 }
-
                 ImageUtils.display(model.url!!, imageView, R.attr.default_artist_drawable)
             }
         })
+    }
+
+    private fun addArtistArt(id: Long,
+                             small: String,
+                             medium: String,
+                             large: String,
+                             extraLarge: String) : ArtistArtModel {
+        val artistArtModel = ArtistArtModel(id,
+                small,
+                medium,
+                large,
+                extraLarge)
+        mArtDataSource.addArtistArt(artistArtModel)
+        return artistArtModel
     }
 
     private fun getIndexUrl(list: List<NewArtistModel.ArtistBeanX.ImageBeanX>, index: Int): String {

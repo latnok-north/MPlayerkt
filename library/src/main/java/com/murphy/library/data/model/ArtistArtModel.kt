@@ -8,6 +8,4 @@ data class ArtistArtModel constructor(@PrimaryKey var id: Long,
                           var small: String,
                           var medium: String,
                           var large: String,
-                          var extraLarge: String) {
-
-}
+                          var extraLarge: String)

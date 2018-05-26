@@ -13,7 +13,7 @@ import io.reactivex.Single
 
 class LocalArtistArtDataSource : ArtistArtDataSource {
 
-    var dao : ArtistArtModelDao = AppDatabase.getInstance(MPApplication.mInstance.applicationContext)
+    val dao : ArtistArtModelDao = AppDatabase.getInstance(MPApplication.mInstance.applicationContext)
             .getArtistArtModelDao()
 
     override fun getArtistArtById(id: Long): Single<ArtistArtModel> {
@@ -21,25 +21,16 @@ class LocalArtistArtDataSource : ArtistArtDataSource {
     }
 
     override fun addArtistArt(model: ArtistArtModel) {
-        Observable.create<Int>({e ->
+        AppDatabase.getInstance(MPApplication.mInstance.applicationContext).postRunnable(Runnable {
             dao.addArtistArt(model)
-            e.onNext(1)
-            e.onComplete()
-        }).compose(RxJavaUtils.transformerForObservable()).subscribe(object : BaseObserver<Int>() {
-            override fun onSuccess(t: Int) {
-
-            }
-
-            override fun onFailure(e: Throwable) {
-
-            }
-
         })
-
     }
 
     override fun deleteArtistArt(model: ArtistArtModel) {
-        dao.deleteArtistArt(model)
+
+        AppDatabase.getInstance(MPApplication.mInstance.applicationContext).postRunnable(Runnable {
+            dao.deleteArtistArt(model)
+        })
     }
 
 
