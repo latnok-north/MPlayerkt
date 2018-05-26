@@ -8,42 +8,34 @@ import com.murphy.library.data.model.ArtistModel
 import com.murphy.library.data.model.SongModel
 import com.murphy.library.data.respository.SongRespository
 import com.murphy.library.rx.BaseObserver
+import com.murphy.mplayer_kt.ui.adapter.SongAdapter
 
 class SongViewModel : BaseViewModel() {
-    private var mSongs: MutableLiveData<ArrayList<SongModel>>
     private var respository: SongRespository
 
-    var mUpdateValue: MutableLiveData<String>? = null
+
+    var mAdapter: SongAdapter
+    var mList: ArrayList<SongModel> = ArrayList()
 
     init {
         respository = SongRespository()
-        mSongs = MutableLiveData()
+        mAdapter = SongAdapter(mList, this)
     }
 
-    fun setValue(item: String) {
-        if (mUpdateValue == null) {
-            mUpdateValue = MutableLiveData()
-        }
-        mUpdateValue?.value = item
-    }
-
-    fun getValue(): LiveData<String>? {
-        return mUpdateValue
-    }
-
-    fun getSongList(mContext: Context): LiveData<ArrayList<SongModel>> {
+    fun loadSongList(mContext: Context) {
         loadMusic(mContext)
-        return mSongs
     }
 
     private fun loadMusic(mContext: Context) {
         respository.getAllSongs(mContext).subscribe(object : BaseObserver<ArrayList<SongModel>>() {
             override fun onSuccess(t: ArrayList<SongModel>) {
-                mSongs.value = t
+                mList.clear()
+                mList.addAll(t)
+                mAdapter.notifyDataSetChanged()
             }
 
             override fun onFailure(e: Throwable) {
-
+                mAdapter.notifyDataSetChanged()
             }
 
         })

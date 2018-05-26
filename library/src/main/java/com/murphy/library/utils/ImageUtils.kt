@@ -1,5 +1,6 @@
 package com.murphy.library.utils
 
+import android.net.Uri
 import android.text.TextUtils
 import android.widget.ImageView
 import com.murphy.library.glide.GlideApp
@@ -14,6 +15,18 @@ class ImageUtils {
             }
             GlideApp.with(imageView.context)
                     .load(url)
+                    .fitCenter()
+                    .into(imageView)
+        }
+
+        fun display(uri: Uri, imageView: ImageView, default: Int) {
+
+            val drawable = ATEUtil.getDefaultSingerDrawable(imageView.context, default)
+
+            GlideApp.with(imageView.context)
+                    .load(uri)
+                    .placeholder(drawable)
+                    .error(drawable)
                     .fitCenter()
                     .into(imageView)
         }

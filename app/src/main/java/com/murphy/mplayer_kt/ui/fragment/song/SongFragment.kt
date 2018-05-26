@@ -19,28 +19,12 @@ class SongFragment : BaseItemListFragment<SongViewModel>() {
         return SongViewModel()
     }
 
-
-    lateinit var mAdapter: SongAdapter
-    lateinit var mList: ArrayList<SongModel>
     override fun generateAdapter(): RecyclerView.Adapter<*> {
-        return mAdapter
+        return viewModel.mAdapter
     }
 
     override fun onBaseItemViewCreated() {
-
-        mList = ArrayList()
-        mAdapter = SongAdapter(activity!!, mList)
         mBinding.recyclerView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL_LIST, true))
-        viewModel.getSongList(activity!!).observe(this, Observer<ArrayList<SongModel>> { t ->
-            mAdapter.addData(t!!)
-            mAdapter.notifyDataSetChanged()
-        })
-
-        mBinding.btnUpdate.setOnClickListener({
-            viewModel.setValue(System.currentTimeMillis().toString())
-        })
-
+        viewModel.loadSongList(activity!!)
     }
-
-
 }

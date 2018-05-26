@@ -13,7 +13,7 @@ import io.reactivex.Single
 
 class LocalArtistArtDataSource : ArtistArtDataSource {
 
-    val dao : ArtistArtModelDao = AppDatabase.getInstance(MPApplication.mInstance.applicationContext)
+    private val dao : ArtistArtModelDao = AppDatabase.getInstance(MPApplication.mInstance.applicationContext)
             .getArtistArtModelDao()
 
     override fun getArtistArtById(id: Long): Single<ArtistArtModel> {
